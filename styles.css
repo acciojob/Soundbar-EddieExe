@@ -1,1 +1,23 @@
 /*  your css code here. If applicable */
+body {
+	background: #9b59b6;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.buttons {
+	display: flex;
+	gap: 30px;
+}
+
+.btn {
+	background: purple;
+	padding: 15px 30px;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	color: white;
+	cursor: pointer;
+}
