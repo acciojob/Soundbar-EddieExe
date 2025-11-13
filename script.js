@@ -1,26 +1,29 @@
-//your JS code here. If required.
+// Define sounds at the top for global access
 const soundNames = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong'];
+const sounds = {};
 
-const sound = {};
-soundNames.forEach(name =>  {
-	sounds[name] = new Audio(`./sounds/${name}.mp3`);
-});
+// Initialize Audio objects safely
+for (let name of soundNames) {
+  sounds[name] = new Audio(`./sounds/${name}.mp3`);
+}
 
-const stopSound = () => {
-  Object.values(sounds).forEach(audio => {
-    audio.pause();
-    audio.currentTime = 0;
-  });
-};
+// Stop all sounds
+function stopAllSounds() {
+  for (let key in sounds) {
+    sounds[key].pause();
+    sounds[key].currentTime = 0;
+  }
+}
 
-document.querySelectorAll('.btn').forEach(button => {
-  button.addEventListener('click', function() {
-    const text = this.textContent.trim().toLowerCase();
-    stopSound();
-    if (sounds[text]) {
-      sounds[text].play();
+// Set up event listeners
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const btnText = btn.textContent.trim().toLowerCase();
+    if (btnText === 'stop') {
+      stopAllSounds();
+    } else if (sounds[btnText]) {
+      stopAllSounds();
+      sounds[btnText].play();
     }
   });
 });
-
-document.querySelector('.stop').addEventListener('click', stopSound);
